@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run -e CI=true soufianead/docker-p1 npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "dokcer-react-travis"
+  env: "Dokcerreacttravis-env"
+  bucket_name: "elasticbeanstalk-us-east-1-217952472818"
+  bucket_path: "dokcer-react-travis"
+  on:
+    branch: master
+
+  access_keyid: $aws
+  secret_access_key: $aws_secret_key
